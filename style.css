@@ -21,6 +21,7 @@ main {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  word-break: break-all;
 }
 
 .calculator-table tr td {
