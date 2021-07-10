@@ -1,36 +1,41 @@
 const calculatorValue = document.querySelector(".calculator-value");
 const calculatorTable = document.querySelector(".calculator-table");
 const calculatorCell = document.querySelectorAll("td:not(.value-cell)");
-let value = calculatorValue.innerText;
+let nowValue = calculatorValue.innerText;
 
 function addNumber(event) {
-  value = value + event.target.outerText;
-  calculatorValue.innerText = value;
-  value = calculatorValue.innerText;
+  nowValue = nowValue + event.target.outerText;
+  calculatorValue.innerText = nowValue;
+  nowValue = nowValue;
+}
+function addOp(event) {
+  nowValue = nowValue + event.target.outerText;
+  calculatorValue.innerText = nowValue;
+  nowValue = nowValue;
 }
 function deleteNumber() {
-  calculatorValue.innerText = value.slice(0, -1);
-  value = calculatorValue.innerText;
+  calculatorValue.innerText = nowValue.slice(0, -1);
+  nowValue = calculatorValue.innerText;
 }
 
 function deleteAllNumber() {
   calculatorValue.innerText = "";
-  value = "";
+  nowValue = "";
 }
 
 function finalNumber() {
-  calculatorValue.innerText = eval(calculatorValue.innerText);
-  value = calculatorValue.innerText;
+  calculatorValue.innerText = new Function("return " + nowValue)();
+  nowValue = calculatorValue.innerText;
 }
 
 calculatorCell[2].addEventListener("click", deleteNumber);
 calculatorCell[1].addEventListener("click", deleteAllNumber);
 calculatorCell[19].addEventListener("click", finalNumber);
 
-calculatorCell[11].addEventListener("click", addNumber);
-calculatorCell[15].addEventListener("click", addNumber);
-calculatorCell[7].addEventListener("click", addNumber);
-calculatorCell[3].addEventListener("click", addNumber);
+calculatorCell[11].addEventListener("click", addOp);
+calculatorCell[15].addEventListener("click", addOp);
+calculatorCell[7].addEventListener("click", addOp);
+calculatorCell[3].addEventListener("click", addOp);
 
 calculatorCell[18].addEventListener("click", addNumber);
 calculatorCell[17].addEventListener("click", addNumber);
