@@ -1,3 +1,5 @@
+"use strict";
+
 const calculatorValue = document.querySelector(".calculator-value");
 const calculatorTable = document.querySelector(".calculator-table");
 const calculatorCell = document.querySelectorAll("td:not(.value-cell)");
@@ -9,9 +11,22 @@ function addNumber(event) {
   nowValue = nowValue;
 }
 function addOp(event) {
-  nowValue = nowValue + event.target.outerText;
-  calculatorValue.innerText = nowValue;
-  nowValue = nowValue;
+  if (
+    calculatorValue.innerText[calculatorValue.innerText.length - 1] !== "+" &&
+    calculatorValue.innerText[calculatorValue.innerText.length - 1] !== "-" &&
+    calculatorValue.innerText[calculatorValue.innerText.length - 1] !== "*" &&
+    calculatorValue.innerText[calculatorValue.innerText.length - 1] !== "/"
+  ) {
+    nowValue = nowValue + event.target.outerText;
+    calculatorValue.innerText = nowValue;
+    nowValue = calculatorValue.innerText;
+    console.log("true");
+  } else {
+    calculatorValue.innerText = nowValue.slice(0, -1);
+    calculatorValue.innerText =
+      calculatorValue.innerText + event.target.outerText;
+    console.log("false");
+  }
 }
 function deleteNumber() {
   calculatorValue.innerText = nowValue.slice(0, -1);
