@@ -87,9 +87,24 @@ tr:first-child td:first-child input {
   background-color: #499ddf;
 }
 
+.alert-page {
+  display: none;
+}
+
 @media screen and (max-width: 480px) {
   main {
     width: 85%;
     height: 70%;
+  }
+}
+@media screen and (orientation: landscape) and (max-height: 480px) {
+  .alert-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
   }
 }
