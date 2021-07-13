@@ -38,7 +38,11 @@ function addDot(dot) {
   }
 }
 function addOp(operator) {
-  if (firstOperand === null) {
+  if (operatorVari === null && operator === "=") {
+    console.log("zoro bug2");
+    return;
+  }
+  if (firstOperand === null || operatorVari === null) {
     console.log("first operand + operator");
     firstOperand = calculatorValue.innerText;
     firstOperandViews.innerText = firstOperand;
