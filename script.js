@@ -83,7 +83,10 @@ function deleteNumber() {
     firstOperandViews.value = firstOperand;
     return;
   }
-  calculatorValue.value = calculatorValue.value.slice(0, -1);
+  calculatorValue.value =
+    calculatorValue.value.length === 1
+      ? "0"
+      : calculatorValue.value.slice(0, -1);
 }
 
 function deleteAllNumber() {
