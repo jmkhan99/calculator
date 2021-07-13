@@ -32,6 +32,7 @@ function addDot(dot) {
   if (waitingForSecondOperand === true) {
     calculatorValue.innerText = "0.";
     waitingForSecondOperand = false;
+    return;
   }
   if (!calculatorValue.innerText.includes(".")) {
     calculatorValue.innerText = calculatorValue.innerText + dot;
@@ -79,6 +80,17 @@ function addOp(operator) {
   }
 }
 function deleteNumber() {
+  if (waitingForSecondOperand === true) {
+    console.log("del bug");
+    calculatorValue.innerText = "0";
+  }
+  if (operatorVari === null && firstOperand !== null) {
+    console.log("del bug2");
+    calculatorValue.innerText = calculatorValue.innerText.slice(0, -1);
+    firstOperand = null;
+    firstOperandViews.innerText = firstOperand;
+    return;
+  }
   calculatorValue.innerText = calculatorValue.innerText.slice(0, -1);
 }
 
