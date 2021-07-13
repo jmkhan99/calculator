@@ -41,6 +41,8 @@ function addDot(dot) {
 function addOp(operator) {
   if (operatorVari === null && operator === "=") {
     console.log("zero bug2");
+    firstOperand = null;
+    firstOperandViews.innerText = firstOperand;
     return;
   }
   if (firstOperand === null || operatorVari === null) {
@@ -56,6 +58,8 @@ function addOp(operator) {
     console.log("change operator");
     operatorVari = operator !== "=" ? operator : null;
     operatorViews.innerText = operatorVari;
+    firstOperand = operator !== "=" ? firstOperand : null;
+    firstOperandViews.innerText = firstOperand;
     return;
   }
   if (
