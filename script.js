@@ -39,7 +39,7 @@ function addDot(dot) {
 }
 function addOp(operator) {
   if (operatorVari === null && operator === "=") {
-    console.log("zoro bug2");
+    console.log("zero bug2");
     return;
   }
   if (firstOperand === null || operatorVari === null) {
@@ -53,7 +53,7 @@ function addOp(operator) {
   }
   if (waitingForSecondOperand === true) {
     console.log("change operator");
-    operatorVari = operator;
+    operatorVari = operator !== "=" ? operator : null;
     operatorViews.innerText = operatorVari;
     return;
   }
