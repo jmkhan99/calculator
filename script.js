@@ -12,43 +12,41 @@ let waitingForSecondOperand = false;
 let secondNum = null;
 let nextOperatorVari = null;
 
-calculatorValue.innerText = "0";
+calculatorValue.value = "0";
 
 function addNumber(number) {
   if (waitingForSecondOperand === true) {
     console.log("addnumber second");
-    calculatorValue.innerText = number;
+    calculatorValue.value = number;
     waitingForSecondOperand = false;
     return;
   } else {
     console.log("addnumber first");
-    calculatorValue.innerText =
-      calculatorValue.innerText === "0"
-        ? number
-        : calculatorValue.innerText + number;
+    calculatorValue.value =
+      calculatorValue.value === "0" ? number : calculatorValue.value + number;
   }
 }
 function addDot(dot) {
   if (waitingForSecondOperand === true) {
-    calculatorValue.innerText = "0.";
+    calculatorValue.value = "0.";
     waitingForSecondOperand = false;
     return;
   }
-  if (!calculatorValue.innerText.includes(".")) {
-    calculatorValue.innerText = calculatorValue.innerText + dot;
+  if (!calculatorValue.value.includes(".")) {
+    calculatorValue.value = calculatorValue.value + dot;
   }
 }
 function addOp(operator) {
   if (operatorVari === null && operator === "=") {
     console.log("zero bug2");
     firstOperand = null;
-    firstOperandViews.innerText = firstOperand;
+    firstOperandViews.value = firstOperand;
     return;
   }
   if (firstOperand === null || operatorVari === null) {
     console.log("first operand + operator");
-    firstOperand = calculatorValue.innerText;
-    firstOperandViews.innerText = firstOperand;
+    firstOperand = calculatorValue.value;
+    firstOperandViews.value = firstOperand;
     operatorVari = operator;
     operatorViews.innerText = operatorVari;
     waitingForSecondOperand = true;
@@ -59,7 +57,7 @@ function addOp(operator) {
     operatorVari = operator !== "=" ? operator : null;
     operatorViews.innerText = operatorVari;
     firstOperand = operator !== "=" ? firstOperand : null;
-    firstOperandViews.innerText = firstOperand;
+    firstOperandViews.value = firstOperand;
     return;
   }
   if (
@@ -69,14 +67,14 @@ function addOp(operator) {
     operator === "/"
   ) {
     console.log("go final");
-    secondNum = calculatorValue.innerText;
+    secondNum = calculatorValue.value;
     nextOperatorVari = operator;
     console.log(nextOperatorVari);
     finalNumber(firstOperand, secondNum, operatorVari);
     return;
   }
   if (operator === "=") {
-    secondNum = calculatorValue.innerText;
+    secondNum = calculatorValue.value;
     nextOperatorVari = null;
     console.log(nextOperatorVari);
     finalNumber(firstOperand, secondNum, operatorVari);
@@ -86,36 +84,36 @@ function addOp(operator) {
 function deleteNumber() {
   if (waitingForSecondOperand === true) {
     console.log("del bug");
-    calculatorValue.innerText = "0";
+    calculatorValue.value = "0";
   }
   if (operatorVari === null && firstOperand !== null) {
     console.log("del bug2");
-    calculatorValue.innerText = calculatorValue.innerText.slice(0, -1);
+    calculatorValue.value = calculatorValue.value.slice(0, -1);
     firstOperand = null;
-    firstOperandViews.innerText = firstOperand;
+    firstOperandViews.value = firstOperand;
     return;
   }
-  calculatorValue.innerText = calculatorValue.innerText.slice(0, -1);
+  calculatorValue.value = calculatorValue.value.slice(0, -1);
 }
 
 function deleteAllNumber() {
-  calculatorValue.innerText = "0";
+  calculatorValue.value = "0";
   firstOperand = null;
   operatorVari = null;
   waitingForSecondOperand = false;
   secondNum = null;
-  firstOperandViews.innerText = "";
+  firstOperandViews.value = "";
   operatorViews.innerText = "";
 }
 
 function finalNumber(a, b, operator) {
   if (operator === "+") {
     console.log("final plus");
-    calculatorValue.innerText = parseFloat(
+    calculatorValue.value = parseFloat(
       (parseFloat(a) + parseFloat(b)).toFixed(7)
     );
-    firstOperand = calculatorValue.innerText;
-    firstOperandViews.innerText = firstOperand;
+    firstOperand = calculatorValue.value;
+    firstOperandViews.value = firstOperand;
     operatorVari = nextOperatorVari;
     operatorViews.innerText = operatorVari;
     waitingForSecondOperand = operatorVari !== null ? true : false;
@@ -123,33 +121,33 @@ function finalNumber(a, b, operator) {
   }
   if (operator === "-") {
     console.log("final -");
-    calculatorValue.innerText = parseFloat(
+    calculatorValue.value = parseFloat(
       (parseFloat(a) - parseFloat(b)).toFixed(7)
     );
-    firstOperand = calculatorValue.innerText;
-    firstOperandViews.innerText = firstOperand;
+    firstOperand = calculatorValue.value;
+    firstOperandViews.value = firstOperand;
     operatorVari = nextOperatorVari;
     operatorViews.innerText = operatorVari;
     waitingForSecondOperand = operatorVari !== null ? true : false;
     return;
   }
   if (operator === "*") {
-    calculatorValue.innerText = parseFloat(
+    calculatorValue.value = parseFloat(
       (parseFloat(a) * parseFloat(b)).toFixed(7)
     );
-    firstOperand = calculatorValue.innerText;
-    firstOperandViews.innerText = firstOperand;
+    firstOperand = calculatorValue.value;
+    firstOperandViews.value = firstOperand;
     operatorVari = nextOperatorVari;
     operatorViews.innerText = operatorVari;
     waitingForSecondOperand = operatorVari !== null ? true : false;
     return;
   }
   if (operator === "/") {
-    calculatorValue.innerText = parseFloat(
+    calculatorValue.value = parseFloat(
       (parseFloat(a) / parseFloat(b)).toFixed(7)
     );
-    firstOperand = calculatorValue.innerText;
-    firstOperandViews.innerText = firstOperand;
+    firstOperand = calculatorValue.value;
+    firstOperandViews.value = firstOperand;
     operatorVari = nextOperatorVari;
     operatorViews.innerText = operatorVari;
     waitingForSecondOperand = operatorVari !== null ? true : false;
