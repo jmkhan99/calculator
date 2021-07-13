@@ -16,12 +16,10 @@ calculatorValue.value = "0";
 
 function addNumber(number) {
   if (waitingForSecondOperand === true) {
-    console.log("addnumber second");
     calculatorValue.value = number;
     waitingForSecondOperand = false;
     return;
   } else {
-    console.log("addnumber first");
     calculatorValue.value =
       calculatorValue.value === "0" ? number : calculatorValue.value + number;
   }
@@ -38,13 +36,11 @@ function addDot(dot) {
 }
 function addOp(operator) {
   if (operatorVari === null && operator === "=") {
-    console.log("zero bug2");
     firstOperand = null;
     firstOperandViews.value = firstOperand;
     return;
   }
   if (firstOperand === null || operatorVari === null) {
-    console.log("first operand + operator");
     firstOperand = calculatorValue.value;
     firstOperandViews.value = firstOperand;
     operatorVari = operator;
@@ -53,7 +49,6 @@ function addOp(operator) {
     return;
   }
   if (waitingForSecondOperand === true) {
-    console.log("change operator");
     operatorVari = operator !== "=" ? operator : null;
     operatorViews.innerText = operatorVari;
     firstOperand = operator !== "=" ? firstOperand : null;
@@ -66,28 +61,23 @@ function addOp(operator) {
     operator === "*" ||
     operator === "/"
   ) {
-    console.log("go final");
     secondNum = calculatorValue.value;
     nextOperatorVari = operator;
-    console.log(nextOperatorVari);
     finalNumber(firstOperand, secondNum, operatorVari);
     return;
   }
   if (operator === "=") {
     secondNum = calculatorValue.value;
     nextOperatorVari = null;
-    console.log(nextOperatorVari);
     finalNumber(firstOperand, secondNum, operatorVari);
     return;
   }
 }
 function deleteNumber() {
   if (waitingForSecondOperand === true) {
-    console.log("del bug");
     calculatorValue.value = "0";
   }
   if (operatorVari === null && firstOperand !== null) {
-    console.log("del bug2");
     calculatorValue.value = calculatorValue.value.slice(0, -1);
     firstOperand = null;
     firstOperandViews.value = firstOperand;
@@ -108,7 +98,6 @@ function deleteAllNumber() {
 
 function finalNumber(a, b, operator) {
   if (operator === "+") {
-    console.log("final plus");
     calculatorValue.value = parseFloat(
       (parseFloat(a) + parseFloat(b)).toFixed(7)
     );
@@ -120,7 +109,6 @@ function finalNumber(a, b, operator) {
     return;
   }
   if (operator === "-") {
-    console.log("final -");
     calculatorValue.value = parseFloat(
       (parseFloat(a) - parseFloat(b)).toFixed(7)
     );
@@ -153,7 +141,6 @@ function finalNumber(a, b, operator) {
     waitingForSecondOperand = operatorVari !== null ? true : false;
     return;
   }
-  console.log("what final");
 }
 
 calculatorTable.addEventListener("click", (event) => {
