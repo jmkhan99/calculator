@@ -77,6 +77,15 @@ function deleteNumber() {
   if (waitingForSecondOperand === true) {
     calculatorValue.value = "0";
   }
+  if (calculatorValue.value[0] === "-") {
+    calculatorValue.value =
+      calculatorValue.value.length === 2
+        ? "0"
+        : calculatorValue.value.slice(0, -1);
+    firstOperand = null;
+    firstOperandViews.value = firstOperand;
+    return;
+  }
   if (operatorVari === null && firstOperand !== null) {
     calculatorValue.value = calculatorValue.value.slice(0, -1);
     firstOperand = null;
