@@ -86,7 +86,9 @@ tr:first-child td:first-child input {
 .calculator-table tr:last-child td:last-child:hover {
   background-color: #499ddf;
 }
-
+.calculator-table tr:last-child td:last-child:active {
+  background-color: #0078d7;
+}
 .alert-page {
   display: none;
 }
